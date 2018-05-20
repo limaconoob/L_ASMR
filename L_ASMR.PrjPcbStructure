@@ -1,0 +1,3 @@
+Record=TopLevelDocument|FileName=P0_Main_Connect.SchDoc
+Record=SheetSymbol|SourceDocument=P0_Main_Connect.SchDoc|Designator=Alimentation|SchDesignator=Alimentation|FileName=PA1_Alim.SchDoc|SymbolType=Normal|RawFileName=PA1_Alim.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
+Record=SheetSymbol|SourceDocument=P0_Main_Connect.SchDoc|Designator=Microphones|SchDesignator=Microphones|FileName=PC1_Dual_Microphone.SchDoc|SymbolType=Normal|RawFileName=PC1_Dual_Microphone.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
