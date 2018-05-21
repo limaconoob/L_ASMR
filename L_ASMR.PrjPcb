@@ -55,6 +55,23 @@ GenerateClassCluster=0
 DocumentUniqueId=ETJSLNPU
 
 [Document2]
+DocumentPath=PC1_Codec.SchDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=GLNJACCW
+
+[Document3]
 DocumentPath=PA1_Alim.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -71,8 +88,8 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=YGKJVLED
 
-[Document3]
-DocumentPath=PC1_Dual_Microphone.SchDoc
+[Document4]
+DocumentPath=PC2_Dual_Microphone.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -88,7 +105,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=AIJVYYIL
 
-[Document4]
+[Document5]
 DocumentPath=libASMR.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -104,23 +121,6 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=XQIUFSBT
-
-[Document5]
-DocumentPath=PC2_Codec.SchDoc
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=GLNJACCW
 
 [Document6]
 DocumentPath=PC3_Audio_Output.SchDoc
