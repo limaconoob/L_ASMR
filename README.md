@@ -1,4 +1,4 @@
-#L_ASMR
+# L_ASMR
 
 L'objectif de ce projet est de créer un microphone binaural pour faire de l'ASMR.
 
@@ -12,19 +12,19 @@ La tension d'alimentation du projet sera 5V DC pour qu'il puisse fonctionner uni
 A l'issu de ces travaux, une production CAO d'un boîtier pourra être imprimé en résine. (Annexe) 
 
 
-###Partie électronique (Altium/Eagle)
+### Partie électronique (Altium/Eagle)
 - Choix des composants utilisés
 - Rédaction des plans du montage électronique
 - Mise en fonctionnement du montage
 - Production d'un circuit imprimé
 
-###Partie logicielle (C/C++ & Framework JUCE)
+### Partie logicielle (C/C++ & Framework JUCE)
 - Traitement du son reçu par les micros
 - Traitement du son transmis par la sortie jack
 - Stockage des données sur la carte SD
 - Driver USB pour communiquer avec le projet
 - Génération de sons standards (par ex. le bruit blanc/rose, le tic-tac d'horloge...)
 
-###Partie CAO (AutoCAD/Blender)
+### Partie CAO (AutoCAD/Blender)
 - Dessiner un boîtier avec un design spécifique (oreilles, tête, boîte...)
 - Impression 3D
