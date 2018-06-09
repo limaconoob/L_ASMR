@@ -1,0 +1,13 @@
+Comment,Description,DataSheet
+
+"OLED-12864","Ecran LCD 0.96" 128x64pix","https://www.vishay.com/docs/37902/oled128o064dbpp3n00000.pdf"
+"Jack_Femelle","Prise Mini Jack Stéréo Femelle",""
+"WM-61A","Microphone (sur Header)","https://components101.com/sites/default/files/component_datasheet/Electret%20Condenser%20Microphone.pdf"
+"Micro_SD","Embase de Carte SD",""
+"Micro_USB","Prise Micro USB Femelle",""
+"LM1117","Régulateur de tension","http://www.farnell.com/datasheets/2019100.pdf"
+"OPA1654","Quad Audio AmpliOp","http://www.ti.com/lit/ds/symlink/opa1654.pdf"
+"PCM3060","Stéréo In/Out Audio Codec","http://www.ti.com/lit/ds/symlink/pcm3060.pdf"
+"PIC32MZ2048EFH064","Micro-contrôleur PIC32MZ","http://ww1.microchip.com/downloads/en/DeviceDoc/60001320D.pdf"
+"TP4056","Adaptateur de charge USB vers Batterie","https://dlnmh9ip6v2uc.cloudfront.net/datasheets/Prototyping/TP4056.pdf"
+"USBLC6-2","Protection_ESD","http://www.st.com/content/ccc/resource/technical/document/datasheet/06/1d/48/9c/6c/20/4a/b2/CD00050750.pdf/files/CD00050750.pdf/jcr:content/translations/en.CD00050750.pdf"
