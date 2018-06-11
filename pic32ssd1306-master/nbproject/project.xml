@@ -3,14 +3,14 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>L_ASMR</name>
-            <creation-uuid>f1c488ae-7173-4dfb-9fc8-3a41eac7fe85</creation-uuid>
+            <name>pic32ssd1306</name>
+            <creation-uuid>0cee331a-3c51-42a7-af95-34c730b399ad</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>
             <cpp-extensions/>
             <header-extensions>h</header-extensions>
             <asminc-extensions/>
-            <sourceEncoding>ISO-8859-1</sourceEncoding>
+            <sourceEncoding>UTF-8</sourceEncoding>
             <make-dep-projects/>
         </data>
     </configuration>

@@ -28,6 +28,7 @@
 
 #include <p32xxxx.h>
 #include <sys/attribs.h>
+#include "ssd1306.h"
 
 /*
 **   a b c
@@ -58,15 +59,22 @@ int main()
   TRISEbits.TRISE6 = 1; // Jaune
   TRISEbits.TRISE7 = 1; // Marron
   TRISFbits.TRISF6 = 1; // Bleu
-  
   LATEbits.LATE2 = 0;
   LATEbits.LATE3 = 0;
   LATEbits.LATE4 = 0;
 
+  // OLED LCD Init
+  I2C1CONbits.ON = 1;
+  ssd1306_initialize();
+  clear_screen();
+
+  // LCD First test
+  output_str("Bonjour\n");
+
   unsigned char k;
   k = 0;
   while (42)
-  {
+  { I2C1CONbits.ON = 1;
     if (PORTFbits.RF6 == 0 && k == 1)
     { LATFbits.LATF1 ^= 1;
       k = 0; }
