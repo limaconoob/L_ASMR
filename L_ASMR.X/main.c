@@ -25,6 +25,7 @@
 **    under certain conditions; type `show c' for details.
 */
 
+#include "config_bits.h"
 
 #include <p32xxxx.h>
 #include <sys/attribs.h>

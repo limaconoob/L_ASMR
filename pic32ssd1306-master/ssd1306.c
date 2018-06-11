@@ -288,8 +288,13 @@ static void i2c_send_command(uint8_t data){
     while (CHAN_FUNC(CONbits).PEN);
 }
 
+#define GetSystemClock() (40000000ul)
+
 void ssd1306_initialize(void){
-    
+    INTConfigureSystem(INT_SYSTEM_CONFIG_MULT_VECTOR);
+    INTEnableSystemMultiVectoredInt();
+    SYSTEMConfigPerformance(GetSystemClock());
+    INTEnableInterrupts();
     // Setup the interrupts and interrupt handlers
     INTSetVectorPriority(INT_VECTOR_I2C(CHAN_FUNC()), INT_PRIORITY_LEVEL_1);
     INTSetVectorSubPriority(INT_VECTOR_I2C(CHAN_FUNC()), INT_SUB_PRIORITY_LEVEL_3);
@@ -310,6 +315,13 @@ void ssd1306_initialize(void){
     // SSD1306 datasheet near the end titled:
     // "Software initialization flow chart"
     
+    // Display Off
+    i2c_send_command(0xAE);
+
+    // Set Osc Frequency
+    i2c_send_command(0xD5);
+    i2c_send_command(0x80);
+
     // Set MUX Ratio
     i2c_send_command(0xA8);
     i2c_send_command(0x3F);
@@ -320,6 +332,14 @@ void ssd1306_initialize(void){
     
     // Set Display Start Line
     i2c_send_command(0x40);
+    
+    // Enable charge pump regulator
+    i2c_send_command(0x8D);
+    i2c_send_command(0x14);
+
+    // Set horizontal addressing mode
+    i2c_send_command(0x20);
+    i2c_send_command(0x00);
     
     // Set Segment re-map (if things are reversed you can try change this to 0xA0)
     i2c_send_command(0xA1);
@@ -335,7 +355,15 @@ void ssd1306_initialize(void){
     
     // Set Contrast Control
     i2c_send_command(0x81);
-    i2c_send_command(0x7F);
+    i2c_send_command(0xCF);
+    
+    // Set Precharge
+    i2c_send_command(0xD9);
+    i2c_send_command(0xF1);
+    
+    // Set VCOM Detect
+    i2c_send_command(0xDB);
+    i2c_send_command(0x40);
     
     // Disable Entire Display On
     // (if you just are trying to get ANYTHING to show on the screen
@@ -344,24 +372,15 @@ void ssd1306_initialize(void){
     
     // Set Normal Display (instead of reversed)
     i2c_send_command(0xA6);
-
-    // Set Osc Frequency
-    i2c_send_command(0xD5);
-    i2c_send_command(0x80);
-    
-    // Enable charge pump regulator
- //   i2c_send_command(0x8D);
- //   i2c_send_command(0x14);
+    i2c_send_command(0x2E);
     
     // Display On
     i2c_send_command(0xAF);
     
+// ------------------------------    
+/*    
     // Disable auto scrolling
     i2c_send_command(0x2E);
-
-    // Set horizontal addressing mode
-    i2c_send_command(0x20);
-    i2c_send_command(0x00);
 
     // Set the starting and ending column for horizontal addressing mode
     i2c_send_command(0x21);
@@ -372,7 +391,7 @@ void ssd1306_initialize(void){
     i2c_send_command(0x22);
     i2c_send_command(0);
     i2c_send_command(7);
-
+*/
     // Enable the interrupt handler
     INTClearFlag(INT_SOURCE_I2C_MASTER(CHAN_FUNC()));
     INTEnable(INT_SOURCE_I2C_MASTER(CHAN_FUNC()), INT_ENABLED);
