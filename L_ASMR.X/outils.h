@@ -1,5 +1,5 @@
 /*
-**    main.c
+**    outils.h
 ** 
 **    L_ASMR is an embedded systems project. The initial purpose is to build a
 **    binaural microphone and some useful features on it, with cheap materials.
@@ -25,60 +25,10 @@
 **    under certain conditions; type `show c' for details.
 */
 
+#ifndef OUTILS_H
+  #define OUTILS_H
 
-#include <p32xxxx.h>
-#include <sys/attribs.h>
+   int strlen(char *str);
+   void memdel(void** data);
 
-#include "outils.h"
-#include "..\pic32ssd1306-master\ssd1306.h"
-
-/*
-**   a b c
-** d 1 2 3
-** e 4 5 6
-** f 7 8 9
-** g * 0 #
-**
-** Vert:a
-** Rouge:b
-** Blanc:c
-**
-** Bleu:g
-** Marron:f
-** Jaune:e
-** Gris:d
-*/
-
-int main()
-{ TRISFbits.TRISF1 = 0;
-  TRISDbits.TRISD8 = 1;
-  LATFbits.LATF1 = 1;
-  
-  TRISEbits.TRISE2 = 0; // Blanc
-  TRISEbits.TRISE3 = 0; // Rouge
-  TRISEbits.TRISE4 = 0; // Vert
-  TRISEbits.TRISE5 = 1; // Gris
-  TRISEbits.TRISE6 = 1; // Jaune
-  TRISEbits.TRISE7 = 1; // Marron
-  TRISFbits.TRISF6 = 1; // Bleu
-  LATEbits.LATE2 = 0;
-  LATEbits.LATE3 = 0;
-  LATEbits.LATE4 = 0;
-
-  // OLED LCD Init
-  I2C1CONbits.ON = 1;
-  ssd1306_initialize();
-  clear_screen();
-
-  // LCD First test
-  output_str("Bonjour\n");
-
-  unsigned char k;
-  k = 0;
-  while (42)
-  { I2C1CONbits.ON = 1;
-    if (PORTFbits.RF6 == 0 && k == 1)
-    { LATFbits.LATF1 ^= 1;
-      k = 0; }
-    else if (PORTFbits.RF6 == 1)
-    { k = 1; }}}
+#endif
