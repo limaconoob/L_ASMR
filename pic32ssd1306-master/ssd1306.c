@@ -374,22 +374,12 @@ void ssd1306_initialize(void){
     
     // Display On
     i2c_send_command(0xAF);
-    
-// ------------------------------    
-/*    
-    // Disable auto scrolling
-    i2c_send_command(0x2E);
 
-    // Set the starting and ending column for horizontal addressing mode
-    i2c_send_command(0x21);
-    i2c_send_command(0);
-    i2c_send_command(127);
-    
-    // Set the page start and end for horizontal addressing
-    i2c_send_command(0x22);
-    i2c_send_command(0);
-    i2c_send_command(7);
-*/
+    int i = 100000;
+    while (i)
+    { i -= 1; }
+    clear_screen();
+
     // Enable the interrupt handler
     INTClearFlag(INT_SOURCE_I2C_MASTER(CHAN_FUNC()));
     INTEnable(INT_SOURCE_I2C_MASTER(CHAN_FUNC()), INT_ENABLED);
