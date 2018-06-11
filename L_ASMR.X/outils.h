@@ -30,5 +30,6 @@
 
    int strlen(char *str);
    void memdel(void** data);
+   void *memset(void *b, int c, unsigned long len);
 
 #endif

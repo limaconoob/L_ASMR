@@ -8,6 +8,8 @@
 ** You can check out more of his work at https://github.com/brynthomas
 */
 
+#include "..\L_ASMR.X\outils.h"
+
 #include "ssd1306.h"
 #define _DISABLE_OPENADC10_CONFIGPORT_WARNING
 #define _SUPPRESS_PLIB_WARNING
@@ -348,8 +350,8 @@ void ssd1306_initialize(void){
     i2c_send_command(0x80);
     
     // Enable charge pump regulator
-    i2c_send_command(0x8D);
-    i2c_send_command(0x14);
+ //   i2c_send_command(0x8D);
+ //   i2c_send_command(0x14);
     
     // Display On
     i2c_send_command(0xAF);
@@ -370,7 +372,7 @@ void ssd1306_initialize(void){
     i2c_send_command(0x22);
     i2c_send_command(0);
     i2c_send_command(7);
-    
+
     // Enable the interrupt handler
     INTClearFlag(INT_SOURCE_I2C_MASTER(CHAN_FUNC()));
     INTEnable(INT_SOURCE_I2C_MASTER(CHAN_FUNC()), INT_ENABLED);

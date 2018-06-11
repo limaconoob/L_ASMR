@@ -38,8 +38,15 @@
   { *data = (void*)0; }
 #endif
 
-
-
+#ifndef memset
+  void *memset(void *b, int c, unsigned long len)
+  { char *str;
+    str = (char*)b;
+    while (len > 0)
+    { *str = c;
+     str += 1;
+     len -= 1; }}
+#endif
 
 
 

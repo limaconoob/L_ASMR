@@ -1,6 +1,7 @@
 build/default/debug/_ext/925301123/ssd1306.o:  \
  ../pic32ssd1306-master/ssd1306.c  \
-../pic32ssd1306-master/ssd1306.h  \
+ ../pic32ssd1306-master/../L_ASMR.X/outils.h  \
+ ../pic32ssd1306-master/ssd1306.h  \
  C:/Program\ Files\ (x86)/Microchip/xc32/v1.40/pic32-libs/include/plib.h  \
  C:/Program\ Files\ (x86)/Microchip/xc32/v1.40/pic32-libs/include/peripheral/adc10.h  \
  C:/Program\ Files\ (x86)/Microchip/xc32/v1.40/pic32-libs/include/peripheral/int.h  \

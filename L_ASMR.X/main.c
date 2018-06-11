@@ -66,8 +66,12 @@ int main()
   LATEbits.LATE4 = 0;
 
   // OLED LCD Init
-  I2C1CONbits.ON = 1;
   ssd1306_initialize();
+ 
+
+  int i = 100000;
+  while (i)
+  { i -= 1; }
   clear_screen();
 
   // LCD First test
@@ -76,8 +80,7 @@ int main()
   unsigned char k;
   k = 0;
   while (42)
-  { I2C1CONbits.ON = 1;
-    if (PORTFbits.RF6 == 0 && k == 1)
+  { if (PORTFbits.RF6 == 0 && k == 1)
     { LATFbits.LATF1 ^= 1;
       k = 0; }
     else if (PORTFbits.RF6 == 1)
