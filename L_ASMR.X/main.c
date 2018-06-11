@@ -29,10 +29,46 @@
 #include <p32xxxx.h>
 #include <sys/attribs.h>
 
+/*
+**   a b c
+** d 1 2 3
+** e 4 5 6
+** f 7 8 9
+** g * 0 #
+**
+** Vert:a
+** Rouge:b
+** Blanc:c
+**
+** Bleu:g
+** Marron:f
+** Jaune:e
+** Gris:d
+*/
+
 int main()
 { TRISFbits.TRISF1 = 0;
   TRISDbits.TRISD8 = 1;
   LATFbits.LATF1 = 1;
+  
+  TRISEbits.TRISE2 = 0; // Blanc
+  TRISEbits.TRISE3 = 0; // Rouge
+  TRISEbits.TRISE4 = 0; // Vert
+  TRISEbits.TRISE5 = 1; // Gris
+  TRISEbits.TRISE6 = 1; // Jaune
+  TRISEbits.TRISE7 = 1; // Marron
+  TRISFbits.TRISF6 = 1; // Bleu
+  
+  LATEbits.LATE2 = 0;
+  LATEbits.LATE3 = 0;
+  LATEbits.LATE4 = 0;
+
+  unsigned char k;
+  k = 0;
   while (42)
-  { if (PORTDbits.RD8 == 0)
-    { LATFbits.LATF1 = 0; }}}
+  {
+    if (PORTFbits.RF6 == 0 && k == 1)
+    { LATFbits.LATF1 ^= 1;
+      k = 0; }
+    else if (PORTFbits.RF6 == 1)
+    { k = 1; }}}

@@ -1,0 +1,19 @@
+  a b c
+d 1 2 3
+e 4 5 6
+f 7 8 9
+g * 0 #
+
+Blanc-Bleu:#
+Blanc-Marron:9
+Blanc-Jaune:6
+Blanc-Gris:3
+
+Vert:a
+Rouge:b
+Blanc:c
+
+Bleu:g
+Marron:f
+Jaune:e
+Gris:d
