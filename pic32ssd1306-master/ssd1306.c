@@ -84,7 +84,7 @@ static uint8_t i2c_in_transfer = 0;
 // If a transfer is not happening, it directly starts up the I2C system
 // knowing that the interrupt handler will see it through to completion.
 
-static void queue_refresh(void){
+void queue_refresh(void){
     i2c_refresh_queued = 1;
     if (i2c_in_transfer == 0){
         INTClearFlag(INT_SOURCE_I2C_MASTER(CHAN_FUNC()));
@@ -241,8 +241,6 @@ void set_pixel(uint8_t x, uint8_t y, uint8_t colour){
     } else {
         screen_data[SCREEN_WIDTH * row_offset + column_offset] |= (1 << bit_offset); 
     }
-    
-    queue_refresh();
 }
 
 // Our interrupt handler to drive updating of the screen
