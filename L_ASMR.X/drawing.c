@@ -26,9 +26,72 @@
 */
 
 #include "drawing.h"
+/*
+void draw_object3x5(uint8_t x, uint8_t y, tiny_draw k)
+{ uint8_t i = 0, j = 0;
+  k >>= 1;
+  draw_polygon(x, y, space, 0); // Nettoie la cellule où on va écrire le char
+  while (j < 8)
+  { while (i < 3)
+    { if (k & (1 << i))
+      { set_pixel(x + (7 - i), y + (9 - j), 1); }
+      i += 1; }
+    i = 0;
+    k >>= 7;
+    j += 1; }
+  queue_refresh(); }
+*/
+void draw_object7x9(uint8_t x, uint8_t y, draw k)
+{ uint8_t i = 0, j = 0;
+  k >>= 1;
+  draw_polygon(x, y, space, 0); // Nettoie la cellule où on va écrire le char
+  while (j < 9)
+  { while (i < 7)
+    { if (k & (1 << i))
+      { set_pixel(x + (7 - i), y + (9 - j), 1); }
+      i += 1; }
+    i = 0;
+    k >>= 7;
+    j += 1; }
+  queue_refresh(); }
+
+void outc(uint8_t x, uint8_t y, char c)
+{ if (c > 32)
+  { c -= 33; 
+    draw_object7x9(x, y, font7x9[c]); }
+  else if (c == 32)
+  { draw_polygon(x, y, space, 0); }}
+
+void putstr_7x9(uint8_t x, uint8_t y, char *str)
+{ (void)str;
+/*
+ while (*str)
+ { outc(x, y, *str);
+   x += 8;
+   str += 1; }
+*/
+  draw_object7x9(x, y, font7x9[0]);
+  x += 8;
+  draw_object7x9(x, y, font7x9[1]);
+  x += 8;
+  draw_object7x9(x, y, font7x9[2]);
+  x += 8;
+  draw_object7x9(x, y, font7x9[3]);
+  x += 8;
+  draw_object7x9(x, y, font7x9[4]);
+  x += 8;
+  outc(x, y, ' ');
+  x += 8;
+  draw_object7x9(x, y, font7x9[0]);
+  x += 8;
+  draw_object7x9(x, y, font7x9[0]);
+  x += 8;
+  draw_object7x9(x, y, font7x9[0]);
+  x += 12; }
+
 
 // Dessine seulement des lignes verticales.
-void draw_linear(uint8_t y1, uint8_t y2, uint8_t x, uint8_t couleur)
+void draw_linear(point y1, point y2, point x, point couleur)
 { while (y1 <= y2)
   { set_pixel(x, y1, couleur);
     y1 += 1; }
@@ -36,22 +99,13 @@ void draw_linear(uint8_t y1, uint8_t y2, uint8_t x, uint8_t couleur)
 
 // dessin[i] = y1;
 // dessin[i + 1] = y2;
-void draw_polygon(uint8_t x, uint8_t y, draw *polygone, uint8_t couleur)
+void draw_polygon(uint8_t x, uint8_t y, point *polygone, uint8_t couleur)
 { while (*polygone || *(polygone + 1))
   { draw_linear((*polygone) + y, (*(polygone + 1)) + y, x, couleur);
     x += 1;
     polygone += 2; }}
 
-// dessin[i] = x;
-// dessin[i + 1] = y;
-void draw_objects(uint8_t x, uint8_t y, draw *dessin, uint8_t couleur)
-{ uint8_t i = 2;
-  set_pixel(x + (*dessin), y + (*(dessin + 1)), couleur);
-  while (dessin[i] || dessin[i + 1])
-  { set_pixel(x + dessin[i], y + dessin[i + 1], couleur);
-    i += 2; }
-  queue_refresh(); }
-
+// Dessine le bouton Stop/Play/Pause
 void draw_spp(uint8_t flag)
 { draw_polygon(114, 27, clear_spp, 0);
   if (flag == PLAY)

@@ -55,11 +55,13 @@ uint8_t battery_level(void)
 { return (6); }
 
 void update_battery(void)
-{ draw_polygon(110, 7, batterie, 1);
+{ draw_polygon(110, 4, batterie, 1);
   uint8_t level = 11 - battery_level();
   while (level)
-  { draw_linear(8, 14, 122 - level, 0);
+  { draw_linear(5, 11, 122 - level, 0);
     level -= 1; }}
+
+
 
 int main()
 { TRISFbits.TRISF1 = 0;
@@ -81,11 +83,13 @@ int main()
   ssd1306_initialize();
   output_str("Bonjour");
 
-  draw_objects(80, 5, usb_logo, 1);
-  draw_polygon(95, 9, sd_card, 1);
+  draw_object7x9(83, 3, usb_logo);
+  draw_polygon(97, 5, sd_card, 1);
   update_battery();
   
   draw_spp(PAUSE);
+  
+  putstr_7x9(10, 17, "aa");
   
   unsigned char k;
   k = 0;
