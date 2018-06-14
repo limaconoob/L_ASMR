@@ -54,6 +54,22 @@ void draw_object7x9(uint8_t x, uint8_t y, draw k)
     j += 1; }
   queue_refresh(); }
 
+void draw_number(uint8_t x, uint8_t y, uint8_t nb)
+{ uint8_t i = 0, j = 0, shift = 0, cur_trunc = 0;
+  while (j < 16)
+  { while (i < 24)
+    { if ((nombres[cur_trunc]) & (draw)((draw)1 << ((draw)((draw)63 - (draw)shift))))
+      { set_pixel(x + (24 - i), y + (16 - j), 1); }
+      shift += 1;
+      if (shift == 64)
+      { cur_trunc += 1;
+        shift = 0; }
+      i += 1; }
+    i = 0;
+    j += 1; }
+  queue_refresh(); }
+
+
 void outc(uint8_t x, uint8_t y, char c)
 { if (c > 32)
   { c -= 95;//33; 

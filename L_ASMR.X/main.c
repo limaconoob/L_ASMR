@@ -90,7 +90,9 @@ int main()
   draw_spp(PAUSE);
   
   putstr_7x9(2, 17, "abcdefghijklm");
-  putstr_7x9(2, 28, "nopqrstuvwxyz");
+//  putstr_7x9(2, 28, "nopqrstuvwxyz");
+
+  draw_number(30, 28, 0);
   
   unsigned char k;
   k = 0;
