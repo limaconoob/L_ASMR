@@ -92,7 +92,16 @@ int main()
   putstr_7x9(2, 17, "abcdefghijklm");
 //  putstr_7x9(2, 28, "nopqrstuvwxyz");
 
-  draw_number(30, 28, 0);
+  draw_number(0, 34, 0);
+  draw_number(17, 34, 0);
+  draw_polygon(35, 40, dot, 1);
+  draw_polygon(35, 47, dot, 1);
+  draw_number(37, 34, 0);
+  draw_number(54, 34, 0);
+  draw_polygon(72, 40, dot, 1);
+  draw_polygon(72, 47, dot, 1);
+  draw_number(74, 34, 0);
+  draw_number(91, 34, 0);
   
   unsigned char k;
   k = 0;

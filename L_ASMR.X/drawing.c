@@ -55,18 +55,19 @@ void draw_object7x9(uint8_t x, uint8_t y, draw k)
   queue_refresh(); }
 
 void draw_number(uint8_t x, uint8_t y, uint8_t nb)
-{ uint8_t i = 0, j = 0, shift = 0, cur_trunc = 0;
-  while (j < 16)
-  { while (i < 24)
-    { if ((nombres[cur_trunc]) & (draw)((draw)1 << ((draw)((draw)63 - (draw)shift))))
-      { set_pixel(x + (24 - i), y + (16 - j), 1); }
-      shift += 1;
-      if (shift == 64)
-      { cur_trunc += 1;
-        shift = 0; }
+{ uint8_t i = 0, j = 0, cur_trunc = 0;
+  draw shift = nombres[(nb * 5) + 4];
+  while (j < 20)
+  { while (i < 16)
+    { if (shift & (1 << i))
+      { set_pixel(x + (16 - i), y + (20 - j), 1); }
       i += 1; }
     i = 0;
-    j += 1; }
+    shift >>= 16;
+    j += 1;
+    if (!(j % 4))
+    { cur_trunc += 1;
+      shift = nombres[(nb * 5) + (4 - cur_trunc)]; }}
   queue_refresh(); }
 
 
