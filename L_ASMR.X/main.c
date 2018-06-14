@@ -83,13 +83,14 @@ int main()
   ssd1306_initialize();
   output_str("Bonjour");
 
-  draw_object7x9(83, 3, usb_logo);
+  draw_object7x9(83, 3, usb_logo >> 1);
   draw_polygon(97, 5, sd_card, 1);
   update_battery();
   
   draw_spp(PAUSE);
   
-  putstr_7x9(10, 17, "aa");
+  putstr_7x9(2, 17, "abcdefghijklm");
+  putstr_7x9(2, 28, "nopqrstuvwxyz");
   
   unsigned char k;
   k = 0;

@@ -43,7 +43,6 @@ void draw_object3x5(uint8_t x, uint8_t y, tiny_draw k)
 */
 void draw_object7x9(uint8_t x, uint8_t y, draw k)
 { uint8_t i = 0, j = 0;
-  k >>= 1;
   draw_polygon(x, y, space, 0); // Nettoie la cellule où on va écrire le char
   while (j < 9)
   { while (i < 7)
@@ -57,38 +56,16 @@ void draw_object7x9(uint8_t x, uint8_t y, draw k)
 
 void outc(uint8_t x, uint8_t y, char c)
 { if (c > 32)
-  { c -= 33; 
-    draw_object7x9(x, y, font7x9[c]); }
+  { c -= 95;//33; 
+    draw_object7x9(x, y, font7x9[c] >> 1); }
   else if (c == 32)
   { draw_polygon(x, y, space, 0); }}
 
 void putstr_7x9(uint8_t x, uint8_t y, char *str)
-{ (void)str;
-/*
- while (*str)
- { outc(x, y, *str);
-   x += 8;
-   str += 1; }
-*/
-  draw_object7x9(x, y, font7x9[0]);
-  x += 8;
-  draw_object7x9(x, y, font7x9[1]);
-  x += 8;
-  draw_object7x9(x, y, font7x9[2]);
-  x += 8;
-  draw_object7x9(x, y, font7x9[3]);
-  x += 8;
-  draw_object7x9(x, y, font7x9[4]);
-  x += 8;
-  outc(x, y, ' ');
-  x += 8;
-  draw_object7x9(x, y, font7x9[0]);
-  x += 8;
-  draw_object7x9(x, y, font7x9[0]);
-  x += 8;
-  draw_object7x9(x, y, font7x9[0]);
-  x += 12; }
-
+{ while (*str)
+  { outc(x, y, *str);
+    x += 8;
+    str += 1; }}
 
 // Dessine seulement des lignes verticales.
 void draw_linear(point y1, point y2, point x, point couleur)
