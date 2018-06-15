@@ -55,7 +55,8 @@ void draw_object7x9(uint8_t x, uint8_t y, draw k)
   queue_refresh(); }
 
 void draw_number(uint8_t x, uint8_t y, uint8_t nb)
-{ uint8_t i = 0, j = 0, cur_trunc = 0;
+{ if (nb > 9) return;
+  uint8_t i = 0, j = 0, cur_trunc = 0;
   draw shift = nombres[(nb * 5) + 4];
   while (j < 20)
   { while (i < 16)
@@ -101,11 +102,13 @@ void draw_polygon(uint8_t x, uint8_t y, point *polygone, uint8_t couleur)
 
 // Dessine le bouton Stop/Play/Pause
 void draw_spp(uint8_t flag)
-{ draw_polygon(114, 27, clear_spp, 0);
+{ draw_polygon(114, 35, clear_spp, 0);
   if (flag == PLAY)
-  { draw_polygon(115, 27, play, 1); }
+  { draw_polygon(115, 35, play, 1); }
   else if (flag == PAUSE)
-  { draw_polygon(114, 27, pause, 1);
-    draw_polygon(121, 27, pause, 1); }
+  { draw_polygon(114, 35, pause, 1);
+    draw_polygon(121, 35, pause, 1); }
   else if (flag == STOP)
-  { draw_polygon(114, 30, stop, 1); }}
+  { draw_polygon(114, 38, stop, 1); }
+  else if (flag == RECORD)
+  { draw_polygon(114, 38, record, 1); }}
