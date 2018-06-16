@@ -31,7 +31,7 @@
 #include <sys/attribs.h>
 
 #include "outils.h"
-#include "drawing.h"
+#include "display/display.h"
 
 /*
 **   a b c
@@ -91,8 +91,10 @@ int main()
   draw_spp(PLAY);
   
 //  putstr_7x9(0, 17, "abcdefghijklmnop");
-    putstr_7x9(0, 17, "ABCDEFGHIJKLMNOP", DISPLAY_POSITIF);
+    putstr_7x9(0, 17, "aBcDeFg42JkLm8oP", DISPLAY_POSITIF);
    // putstr_7x9(0, 27, "QRSTUVWXYZ", NEGATIF);
+  
+  init_timer();
   
   unsigned char k = 0, g = PAUSE;
   while (42)

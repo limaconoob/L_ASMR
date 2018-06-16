@@ -1,5 +1,5 @@
 /*
-**    drawing.h
+**    display.h
 ** 
 **    L_ASMR is an embedded systems project. The initial purpose is to build a
 **    binaural microphone and some useful features on it, with cheap materials.
@@ -25,81 +25,23 @@
 **    under certain conditions; type `show c' for details.
 */
 
-#ifndef DRAWING_H
-  #define DRAWING_H
+#ifndef DISPLAY_H
+  #define DISPLAY_H
 
-  #include "..\pic32ssd1306-master\ssd1306.h"
-
-  typedef unsigned long long  draw;
-  typedef unsigned short      tiny_draw;
-  typedef unsigned char       point;
+  #include "..\..\pic32ssd1306-master\ssd1306.h"
 
   #define DISPLAY_POSITIF 1
   #define DISPLAY_NEGATIF 0
 
-  enum
-  { PLAY,
-    PAUSE,
-    STOP,
-    RECORD };
-  
-  void draw_spp(uint8_t flag);
-  void draw_object7x9(uint8_t x, uint8_t y, draw k, uint8_t flag);
-  void draw_polygon(uint8_t x, uint8_t y, point *polygone, uint8_t flag);
-  void draw_linear(uint8_t y1, uint8_t y2, uint8_t x, uint8_t flag);
+  typedef unsigned long long  draw;
+  typedef unsigned char       point;
+ 
+  ///----------------------------- FONT 7x9 ------------------------------------
+  /// Fonctions
   void putstr_7x9(uint8_t x, uint8_t y, char *str, uint8_t flag);
-  void init_timer(void);
-  void draw_timer(void);
+  void draw_object7x9(uint8_t x, uint8_t y, draw k, uint8_t flag);
 
-/*
-  tiny_draw font3x5[] =
-  { 0x00001700,
-    0x00030003,
-    0x001f0a1f,
-    0x00051f0a,
-    0x00120409,
-    0x001c170f,
-    0x00000300,
-    0x00110e00,
-    0x00000e11,
-    0x00050205,
-    0x00040e04,
-    0x00000810,
-    0x00040404,
-    0x00001000,
-    0x00030418,
-    0x000f111e,
-    0x00001f02,
-    0x00121519,
-    0x000a1511,
-    0x001f0407,
-    0x00091517,
-    0x001d151e,
-    0x00030519,
-    0x001f151f,
-    0x000f1517,
-    0x00000a00,
-    0x00000a10,
-    0x00110a04,
-    0x000a0a0a,
-    0x00040a11,
-    0x00031501,
-    0x0016150e,
-    0x001e051e,
-    0x000a151f,
-    0x0011110e,
-    0x000e111f,
-    0x0015151f,
-    0x0005051f,
-    0x001d150e,
-    0x001f041f,
-    0x00111f11,
-    0x000f1008,
-    0x001b041f,
-    0x0010101f, 0x1f061f, 0x1f0e1f, 0xe110e, 0x2051f, 0x1e190e, 0x160d1f, 0x91512, 0x11f01, 0x1f100f, 0x71807, 0x1f0c1f, 0x1b041b, 0x31c03, 0x131519, 0x11111f, 0x80402, 0x1f1111, 0x20102, 0x101010, 0x201, 0x1c161a, 0xc121f, 0x12120c, 0x1f120c, 0x161a0c, 0x51e04, 0x1e2a0c, 0x1c021f, 0x1d00, 0x1d2010, 0x120c1f, 0x101f11, 0x1e0e1e, 0x1c021e, 0xc120c, 0xc123e, 0x3e120c, 0x2021c, 0xa1e14, 0x121f02, 0x1e100e, 0xe180e, 0x1e1c1e, 0x120c12, 0x1e2806, 0x161e1a, 0x111b04, 0x1b00, 0x41b11, 0x10302};
-*/
-
-  // Font Alphanumérique 7x9
+  /// Font Alphanumérique 7x9
   draw font7x9[64] =
   { 0b0001000001110001101101100011110001111111111100011110001111000110, //A
     0b1111110011001101100110110011011111001100110110011011001111111100, //B
@@ -167,7 +109,20 @@
     0b0111110110011110000111100111011101100000110000011100011001111000, //9
   };
 
-  // Nombres pour le Chrono, Font 16x20
+  /// Objets en Pixel Art
+  draw limaconoob =
+    0b1000110011100100011100011000011000011100001011000101100101101100;
+  draw usb_logo = 
+    0b0001000001110000010111101011110100110011100111000000100000111000;
+  draw lil_square =
+    0b0000000111111111111111111111111111111111111111111111111100000000;
+
+  ///------------------------------- TIMER -------------------------------------
+  /// Fonctions
+  void init_timer(void);
+  void draw_timer(void);
+
+  /// Nombres pour le Chrono, Font 16x20
   draw nombres[50] =
   { 0b0000011111100000000111111111100000011111111110000011111111111100, //0
     0b0111110000111110011110000001111001111000000111100111100000011110, //0
@@ -229,16 +184,14 @@
     0b0000000000011110000000000001111000000000000111100000000000011110, //9
     0b0111100000111110001111111111110000111111111111000000111111110000, //9
   };
-
-  // Pixel Art Objects
-  draw limaconoob =
-    0b1000110011100100011100011000011000011100001011000101100101101100;
-  draw usb_logo = 
-    0b0001000001110000010111101011110100110011100111000000100000111000;
-  draw lil_square =
-    0b0000000111111111111111111111111111111111111111111111111100000000;
   
-  // Polygons
+  ///----------------------------- POLYGONES -----------------------------------
+  /// Fonctions
+  void draw_polygon(uint8_t x, uint8_t y, point *polygone, uint8_t flag);
+  void draw_linear(uint8_t y1, uint8_t y2, uint8_t x, uint8_t flag);
+  void draw_spp(uint8_t flag);
+
+  /// Polygônes
   point dot[6] = { 0, 2, 0, 2, 0, 0 };
   point sd_card[16] = { 0, 7, 0, 7, 0, 7, 0, 7, 0, 7, 1, 7, 2, 7, 0, 0 };
   point batterie[32] = { 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 2, 5, 2, 5, 0, 0 };
@@ -248,6 +201,14 @@
   point stop[32] = { 0, 14, 0, 14, 0, 14, 0, 14, 0, 14, 0, 14, 0, 14, 0, 14, 0, 14, 0, 14, 0, 14, 0, 14, 0, 14, 0, 14, 0, 0 };
   point clear_spp[] = { 0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0, 0 };
   point space[16] = { 0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 0 };
+
+  /// SPP_Flags
+  enum spp_flags
+  { PLAY,
+    PAUSE,
+    STOP,
+    RECORD };
+
 
 #endif
 /*

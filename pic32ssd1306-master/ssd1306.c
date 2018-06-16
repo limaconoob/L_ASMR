@@ -6,6 +6,10 @@
 **
 ** Thanks to brynthomas for sharing his work on GitHub.
 ** You can check out more of his work at https://github.com/brynthomas
+**
+** I modified this file for fitting the electronical materials of my project.
+** Due to the limited space of the PIC32 micro-controller's flash, I supressed 
+** some functions which I was not using in my project.
 */
 
 #include "..\L_ASMR.X\outils.h"
@@ -55,24 +59,10 @@
 
 static uint8_t screen_data[1024];
 
-// This font is the converted version of the Tom Thumb font available at
-// http://robey.lag.net/2010/01/23/tiny-monospace-font.html
-
-// Font data goes from LSB to MSB in four vertical columns of 8-bits.
-// Since the font is only 7 pixels high the 8th bit is ignored.
-// 4 columns * 8-bit fits each symbol into a single 32-bit value.
-
-static const uint32_t const font_data[] = {0x0, 0x1700, 0x30003, 0x1f0a1f, 0x51f0a, 0x120409, 0x1c170f, 0x300, 0x110e00, 0xe11, 0x50205, 0x40e04, 0x810, 0x40404, 0x1000, 0x30418, 0xf111e, 0x1f02, 0x121519, 0xa1511, 0x1f0407, 0x91517, 0x1d151e, 0x30519, 0x1f151f, 0xf1517, 0xa00, 0xa10, 0x110a04, 0xa0a0a, 0x40a11, 0x31501, 0x16150e, 0x1e051e, 0xa151f, 0x11110e, 0xe111f, 0x15151f, 0x5051f, 0x1d150e, 0x1f041f, 0x111f11, 0xf1008, 0x1b041f, 0x10101f, 0x1f061f, 0x1f0e1f, 0xe110e, 0x2051f, 0x1e190e, 0x160d1f, 0x91512, 0x11f01, 0x1f100f, 0x71807, 0x1f0c1f, 0x1b041b, 0x31c03, 0x131519, 0x11111f, 0x80402, 0x1f1111, 0x20102, 0x101010, 0x201, 0x1c161a, 0xc121f, 0x12120c, 0x1f120c, 0x161a0c, 0x51e04, 0x1e2a0c, 0x1c021f, 0x1d00, 0x1d2010, 0x120c1f, 0x101f11, 0x1e0e1e, 0x1c021e, 0xc120c, 0xc123e, 0x3e120c, 0x2021c, 0xa1e14, 0x121f02, 0x1e100e, 0xe180e, 0x1e1c1e, 0x120c12, 0x1e2806, 0x161e1a, 0x111b04, 0x1b00, 0x41b11, 0x10302};
-
 // Tracks the state of the I2C transmission for the interrupt handler.
 
 static int i2c_irq_phase;
 static int i2c_data_count;
-
-// Controls the position of the virtual cursor.
-
-static int cursor_x_pos = 0;
-static int cursor_y_pos = 0;
 
 // Used to signal the state of transmission.
 
@@ -93,135 +83,11 @@ void queue_refresh(void){
         CHAN_FUNC(CONbits).SEN = 1;        
     }
 }
-
-// Scrolls the data in the virtual buffer up by one line.
-
-static void scroll_up(){
-    uint8_t page;
-    uint16_t tempdata;
-    uint8_t column;
-    
-    for (column = 0 ; column < SCREEN_WIDTH; column++){
-        for (page = 0; page < SCREEN_PAGES; page++){
-            tempdata = (screen_data[SCREEN_WIDTH * page + column]);
-            if (page < (SCREEN_PAGES - 1)) tempdata += (screen_data[SCREEN_WIDTH * (page + 1) + column]) << 8;
-            tempdata >>= FONT_HEIGHT;
-            screen_data[SCREEN_WIDTH * page + column] = tempdata & 0xFF;
-        }
-    }
-    queue_refresh();
-}
-
-// Writes a single character to the virtual buffer at the current cursor
-// position and advances the cursor.
-
-void output_char(char a){
-    uint16_t first_row = (cursor_y_pos * 7) >> 3;
-    uint8_t bit_in = (cursor_y_pos * 7) & 7;
-    uint16_t temp_merged_lines;
-    uint32_t pixel_data;
-    uint8_t pixel_offset;
-    
-    // Check for CR/LF and instead of writing anything just use it to move
-    // the cursor.
-    
-    if (a == 10) {
-        cursor_x_pos = 0; 
-        return;
-    }
-    if (a == 13) {
-        cursor_x_pos = 0;
-        cursor_y_pos++;
-        if (cursor_y_pos >= TEXT_ROWS) {
-            cursor_y_pos = TEXT_ROWS - 1;
-            scroll_up();
-        } 
-        return;
-    }
-    
-    if ((a < FONT_FIRST_CHAR) | (a > FONT_LAST_CHAR)) {
-        return;
-    }
-    
-    // Load in the font data for this particular character
-
-    pixel_data = font_data[a - FONT_FIRST_CHAR];
-    
-    // Step through each column of font data...
-    
-    for (pixel_offset = 0; pixel_offset < FONT_WIDTH; pixel_offset++) {
-        // ... read what is currently in the virtual buffer at the cursor ...
-        temp_merged_lines = screen_data[SCREEN_WIDTH * first_row + cursor_x_pos * FONT_WIDTH + pixel_offset];
-        if (first_row < SCREEN_HEIGHT)
-            temp_merged_lines += screen_data[SCREEN_WIDTH * (first_row+1) + cursor_x_pos * FONT_WIDTH + pixel_offset] << 8;
-        
-        // ... clear out any pixels in the spot where the new symbol needs to go ...
-        temp_merged_lines &= ~((uint16_t)(((0b1 << FONT_HEIGHT) - 1) << bit_in));
-        
-        // ... and put a single column of pixels from our font in its place ...
-        temp_merged_lines |= ((uint16_t)(pixel_data & 0xFF)) << (bit_in);
-        
-        // ... then put that combined data back into the virtual buffer ...
-        screen_data[SCREEN_WIDTH * first_row + cursor_x_pos * FONT_WIDTH + pixel_offset] = (uint8_t)temp_merged_lines;
-        if (first_row < SCREEN_HEIGHT) 
-            screen_data[SCREEN_WIDTH * (first_row+1) + cursor_x_pos * FONT_WIDTH + pixel_offset] = (uint8_t) (temp_merged_lines >> 8);
-        
-        // ... and advance the font pixel data one column to the right.
-        pixel_data >>= 8;
-    }
-    cursor_x_pos++;
-    
-    // Do any wrapping if we've reached the end of a line or the end of the
-    // screen.
-    if (cursor_x_pos >= TEXT_COLUMNS) {
-        cursor_x_pos = 0;
-        cursor_y_pos++;
-    };
-    if (cursor_y_pos >= TEXT_ROWS) {
-        cursor_y_pos = TEXT_ROWS - 1;
-        scroll_up();
-    }
-    queue_refresh();
-}
-
-// This overrides the default printf writer. Lets you use printf and
-// have the contents show up on the screen.
-
-void _mon_putc(char a){
-    output_char(a);
-}
-
-// What if you don't want to use printf and all the tons of library baggage
-// it and all its friends bring along? Then you can use this much simpler
-// screen printing routine.
-
-void output_str(char* str){
-    int len;
-    int count;
-    
-    len = strlen(str);
-    for (count = 0; count < len; count++)
-        output_char(str[count]);
-}
-
 // Clears the virtual buffer and updates the screen.
 
 void clear_screen(void){
     memset(screen_data, 0, (SCREEN_WIDTH * SCREEN_HEIGHT) >> 3);
-    cursor_x_pos = 0;
-    cursor_y_pos = 0;
     queue_refresh();
-}
-
-// Moves the virtual cursor.
-
-void goto_xy(uint8_t x, uint8_t y){
-    cursor_x_pos = x;
-    cursor_y_pos = y;
-    if (cursor_x_pos >= TEXT_COLUMNS)
-        cursor_x_pos = 0;
-    if (cursor_y_pos >= TEXT_ROWS)
-        cursor_y_pos = TEXT_ROWS - 1;
 }
 
 // Sets a pixel at a particular location on the screen.

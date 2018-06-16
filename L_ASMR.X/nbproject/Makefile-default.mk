@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c ../pic32ssd1306-master/ssd1306.c outils.c drawing.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c outils.c ../pic32ssd1306-master/ssd1306.c display/font_7x9.c display/polygons.c display/timer_display.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/_ext/925301123/ssd1306.o ${OBJECTDIR}/outils.o ${OBJECTDIR}/drawing.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/_ext/925301123/ssd1306.o.d ${OBJECTDIR}/outils.o.d ${OBJECTDIR}/drawing.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/outils.o ${OBJECTDIR}/_ext/925301123/ssd1306.o ${OBJECTDIR}/display/font_7x9.o ${OBJECTDIR}/display/polygons.o ${OBJECTDIR}/display/timer_display.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/outils.o.d ${OBJECTDIR}/_ext/925301123/ssd1306.o.d ${OBJECTDIR}/display/font_7x9.o.d ${OBJECTDIR}/display/polygons.o.d ${OBJECTDIR}/display/timer_display.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/_ext/925301123/ssd1306.o ${OBJECTDIR}/outils.o ${OBJECTDIR}/drawing.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/outils.o ${OBJECTDIR}/_ext/925301123/ssd1306.o ${OBJECTDIR}/display/font_7x9.o ${OBJECTDIR}/display/polygons.o ${OBJECTDIR}/display/timer_display.o
 
 # Source Files
-SOURCEFILES=main.c ../pic32ssd1306-master/ssd1306.c outils.c drawing.c
+SOURCEFILES=main.c outils.c ../pic32ssd1306-master/ssd1306.c display/font_7x9.c display/polygons.c display/timer_display.c
 
 
 CFLAGS=
@@ -112,23 +112,35 @@ ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/main.o 
 	@${FIXDEPS} "${OBJECTDIR}/main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -DPICkit3PlatformTool=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32-libs/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/lega-c" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/newlib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/include/peripheral" -MMD -MF "${OBJECTDIR}/main.o.d" -o ${OBJECTDIR}/main.o main.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/925301123/ssd1306.o: ../pic32ssd1306-master/ssd1306.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/925301123" 
-	@${RM} ${OBJECTDIR}/_ext/925301123/ssd1306.o.d 
-	@${RM} ${OBJECTDIR}/_ext/925301123/ssd1306.o 
-	@${FIXDEPS} "${OBJECTDIR}/_ext/925301123/ssd1306.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -DPICkit3PlatformTool=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32-libs/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/lega-c" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/newlib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/include/peripheral" -MMD -MF "${OBJECTDIR}/_ext/925301123/ssd1306.o.d" -o ${OBJECTDIR}/_ext/925301123/ssd1306.o ../pic32ssd1306-master/ssd1306.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
-	
 ${OBJECTDIR}/outils.o: outils.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/outils.o.d 
 	@${RM} ${OBJECTDIR}/outils.o 
 	@${FIXDEPS} "${OBJECTDIR}/outils.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -DPICkit3PlatformTool=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32-libs/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/lega-c" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/newlib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/include/peripheral" -MMD -MF "${OBJECTDIR}/outils.o.d" -o ${OBJECTDIR}/outils.o outils.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/drawing.o: drawing.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/drawing.o.d 
-	@${RM} ${OBJECTDIR}/drawing.o 
-	@${FIXDEPS} "${OBJECTDIR}/drawing.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -DPICkit3PlatformTool=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32-libs/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/lega-c" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/newlib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/include/peripheral" -MMD -MF "${OBJECTDIR}/drawing.o.d" -o ${OBJECTDIR}/drawing.o drawing.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
+${OBJECTDIR}/_ext/925301123/ssd1306.o: ../pic32ssd1306-master/ssd1306.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/925301123" 
+	@${RM} ${OBJECTDIR}/_ext/925301123/ssd1306.o.d 
+	@${RM} ${OBJECTDIR}/_ext/925301123/ssd1306.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/925301123/ssd1306.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -DPICkit3PlatformTool=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32-libs/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/lega-c" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/newlib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/include/peripheral" -MMD -MF "${OBJECTDIR}/_ext/925301123/ssd1306.o.d" -o ${OBJECTDIR}/_ext/925301123/ssd1306.o ../pic32ssd1306-master/ssd1306.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/display/font_7x9.o: display/font_7x9.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/display" 
+	@${RM} ${OBJECTDIR}/display/font_7x9.o.d 
+	@${RM} ${OBJECTDIR}/display/font_7x9.o 
+	@${FIXDEPS} "${OBJECTDIR}/display/font_7x9.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -DPICkit3PlatformTool=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32-libs/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/lega-c" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/newlib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/include/peripheral" -MMD -MF "${OBJECTDIR}/display/font_7x9.o.d" -o ${OBJECTDIR}/display/font_7x9.o display/font_7x9.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/display/polygons.o: display/polygons.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/display" 
+	@${RM} ${OBJECTDIR}/display/polygons.o.d 
+	@${RM} ${OBJECTDIR}/display/polygons.o 
+	@${FIXDEPS} "${OBJECTDIR}/display/polygons.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -DPICkit3PlatformTool=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32-libs/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/lega-c" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/newlib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/include/peripheral" -MMD -MF "${OBJECTDIR}/display/polygons.o.d" -o ${OBJECTDIR}/display/polygons.o display/polygons.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/display/timer_display.o: display/timer_display.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/display" 
+	@${RM} ${OBJECTDIR}/display/timer_display.o.d 
+	@${RM} ${OBJECTDIR}/display/timer_display.o 
+	@${FIXDEPS} "${OBJECTDIR}/display/timer_display.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -DPICkit3PlatformTool=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32-libs/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/lega-c" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/newlib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/include/peripheral" -MMD -MF "${OBJECTDIR}/display/timer_display.o.d" -o ${OBJECTDIR}/display/timer_display.o display/timer_display.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
 	
 else
 ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
@@ -137,23 +149,35 @@ ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/main.o 
 	@${FIXDEPS} "${OBJECTDIR}/main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32-libs/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/lega-c" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/newlib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/include/peripheral" -MMD -MF "${OBJECTDIR}/main.o.d" -o ${OBJECTDIR}/main.o main.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/925301123/ssd1306.o: ../pic32ssd1306-master/ssd1306.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/_ext/925301123" 
-	@${RM} ${OBJECTDIR}/_ext/925301123/ssd1306.o.d 
-	@${RM} ${OBJECTDIR}/_ext/925301123/ssd1306.o 
-	@${FIXDEPS} "${OBJECTDIR}/_ext/925301123/ssd1306.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32-libs/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/lega-c" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/newlib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/include/peripheral" -MMD -MF "${OBJECTDIR}/_ext/925301123/ssd1306.o.d" -o ${OBJECTDIR}/_ext/925301123/ssd1306.o ../pic32ssd1306-master/ssd1306.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
-	
 ${OBJECTDIR}/outils.o: outils.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/outils.o.d 
 	@${RM} ${OBJECTDIR}/outils.o 
 	@${FIXDEPS} "${OBJECTDIR}/outils.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32-libs/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/lega-c" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/newlib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/include/peripheral" -MMD -MF "${OBJECTDIR}/outils.o.d" -o ${OBJECTDIR}/outils.o outils.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/drawing.o: drawing.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/drawing.o.d 
-	@${RM} ${OBJECTDIR}/drawing.o 
-	@${FIXDEPS} "${OBJECTDIR}/drawing.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32-libs/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/lega-c" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/newlib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/include/peripheral" -MMD -MF "${OBJECTDIR}/drawing.o.d" -o ${OBJECTDIR}/drawing.o drawing.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
+${OBJECTDIR}/_ext/925301123/ssd1306.o: ../pic32ssd1306-master/ssd1306.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/925301123" 
+	@${RM} ${OBJECTDIR}/_ext/925301123/ssd1306.o.d 
+	@${RM} ${OBJECTDIR}/_ext/925301123/ssd1306.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/925301123/ssd1306.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32-libs/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/lega-c" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/newlib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/include/peripheral" -MMD -MF "${OBJECTDIR}/_ext/925301123/ssd1306.o.d" -o ${OBJECTDIR}/_ext/925301123/ssd1306.o ../pic32ssd1306-master/ssd1306.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/display/font_7x9.o: display/font_7x9.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/display" 
+	@${RM} ${OBJECTDIR}/display/font_7x9.o.d 
+	@${RM} ${OBJECTDIR}/display/font_7x9.o 
+	@${FIXDEPS} "${OBJECTDIR}/display/font_7x9.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32-libs/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/lega-c" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/newlib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/include/peripheral" -MMD -MF "${OBJECTDIR}/display/font_7x9.o.d" -o ${OBJECTDIR}/display/font_7x9.o display/font_7x9.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/display/polygons.o: display/polygons.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/display" 
+	@${RM} ${OBJECTDIR}/display/polygons.o.d 
+	@${RM} ${OBJECTDIR}/display/polygons.o 
+	@${FIXDEPS} "${OBJECTDIR}/display/polygons.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32-libs/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/lega-c" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/newlib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/include/peripheral" -MMD -MF "${OBJECTDIR}/display/polygons.o.d" -o ${OBJECTDIR}/display/polygons.o display/polygons.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/display/timer_display.o: display/timer_display.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/display" 
+	@${RM} ${OBJECTDIR}/display/timer_display.o.d 
+	@${RM} ${OBJECTDIR}/display/timer_display.o 
+	@${FIXDEPS} "${OBJECTDIR}/display/timer_display.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32-libs/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/lega-c" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v2.10/pic32mx/include/newlib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/lib" -I"C:/Program Files (x86)/Microchip/xc32/v1.40/pic32mx/include/peripheral" -MMD -MF "${OBJECTDIR}/display/timer_display.o.d" -o ${OBJECTDIR}/display/timer_display.o display/timer_display.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
 	
 endif
 

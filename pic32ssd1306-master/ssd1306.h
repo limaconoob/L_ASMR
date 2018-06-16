@@ -6,6 +6,10 @@
 **
 ** Thanks to brynthomas for sharing his work on GitHub.
 ** You can check out more of his work at https://github.com/brynthomas
+**
+** I modified this file for fitting the electronical materials of my project.
+** Due to the limited space of the PIC32 micro-controller's flash, I supressed 
+** some functions which I was not using in my project.
 */
 
 #ifndef _SSD1306_H 
@@ -36,25 +40,9 @@
 
 #define SSD1306_I2C_BAUD_RATE_DIVIDER 0x02C
 
-// Overrides the default printf handler to use the screen instead
-
-void _mon_putc(char a);
-
-// Outputs a single character and advances the cursor
-
-void output_char(char a);
-
-// A simple string output function
-
-void output_str(char* str);
-
 // Clears the virtual buffer and updates the screen
 
 void clear_screen(void);
-
-// Moves the virtual cursor
-
-void goto_xy(uint8_t x, uint8_t y);
 
 // Sets a pixel at a particular location on the screen
 // 0 = black, 1 = white for colour.

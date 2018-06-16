@@ -1,5 +1,5 @@
 /*
-**    drawing.c
+**    font_7x9.c
 ** 
 **    L_ASMR is an embedded systems project. The initial purpose is to build a
 **    binaural microphone and some useful features on it, with cheap materials.
@@ -25,7 +25,14 @@
 **    under certain conditions; type `show c' for details.
 */
 
-#include "drawing.h"
+/// This font is the alphanumeric part of the "CP437" font which was created by
+/// IBM for the original IBM PC. No typography designer was mentionned.
+/// Check out https://en.wikipedia.org/wiki/Code_page_437 for more infos
+/// This product is under the Creative Commons Attribution-ShareAlike License :
+/// https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License
+/// I do not directly share it, I'm only using it in my project.
+
+#include "display.h"
 
 void draw_object7x9(uint8_t x, uint8_t y, draw k, uint8_t flag)
 { uint8_t i = 0, j = 0;
@@ -40,24 +47,6 @@ void draw_object7x9(uint8_t x, uint8_t y, draw k, uint8_t flag)
     k >>= 7;
     j += 1; }
   queue_refresh(); }
-
-void draw_number(uint8_t x, uint8_t y, uint8_t nb)
-{ if (nb > 9) return;
-  uint8_t i = 0, j = 0, cur_trunc = 0;
-  draw shift = nombres[(nb * 5) + 4];
-  while (j < 20)
-  { while (i < 16)
-    { if (shift & (1 << i))
-      { set_pixel(x + (16 - i), y + (20 - j), 1); }
-      i += 1; }
-    i = 0;
-    shift >>= 16;
-    j += 1;
-    if (!(j % 4))
-    { cur_trunc += 1;
-      shift = nombres[(nb * 5) + (4 - cur_trunc)]; }}
-  queue_refresh(); }
-
 
 void outc(uint8_t x, uint8_t y, char c, uint8_t flag)
 { if (c > 64 && c < 91)                               //if_upper
@@ -83,52 +72,3 @@ void putstr_7x9(uint8_t x, uint8_t y, char *str, uint8_t flag)
   { outc(x, y, *str, flag);
     x += 8;
     str += 1; }}
-
-// Dessine seulement des lignes verticales.
-void draw_linear(point y1, point y2, point x, uint8_t flag)
-{ while (y1 <= y2)
-  { set_pixel(x, y1, flag);
-    y1 += 1; }
-  queue_refresh(); }
-
-// dessin[i] = y1;
-// dessin[i + 1] = y2;
-void draw_polygon(uint8_t x, uint8_t y, point *polygone, uint8_t flag)
-{ while (*polygone || *(polygone + 1))
-  { draw_linear((*polygone) + y, (*(polygone + 1)) + y, x, flag);
-    x += 1;
-    polygone += 2; }
-  queue_refresh(); }
-
-// Dessine le bouton Stop/Play/Pause
-void draw_spp(uint8_t flag)
-{ draw_polygon(114, 35, clear_spp, 0);
-  if (flag == PLAY)
-  { draw_polygon(115, 35, play, 1); }
-  else if (flag == PAUSE)
-  { draw_polygon(114, 35, pause, 1);
-    draw_polygon(121, 35, pause, 1); }
-  else if (flag == STOP)
-  { draw_polygon(114, 38, stop, 1); }
-  else if (flag == RECORD)
-  { draw_polygon(114, 38, record, 1); }}
-
-void init_timer(void)
-{ draw_number(0, 34, 0);
-  draw_number(17, 34, 0);
-  draw_polygon(35, 40, dot, 1);
-  draw_polygon(35, 47, dot, 1);
-  draw_number(37, 34, 0);
-  draw_number(54, 34, 0);
-  draw_polygon(72, 40, dot, 1);
-  draw_polygon(72, 47, dot, 1);
-  draw_number(74, 34, 0);
-  draw_number(91, 34, 0); }
-
-void draw_timer(void)
-{ draw_number(0, 34, 0);
-  draw_number(17, 34, 5);
-  draw_number(37, 34, 3);
-  draw_number(54, 34, 8);
-  draw_number(74, 34, 5);
-  draw_number(91, 34, 6); }
