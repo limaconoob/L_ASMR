@@ -43,6 +43,7 @@ void draw_object3x5(uint8_t x, uint8_t y, tiny_draw k)
 */
 void draw_object7x9(uint8_t x, uint8_t y, draw k)
 { uint8_t i = 0, j = 0;
+  k >>= 1;
   draw_polygon(x, y, space, 0); // Nettoie la cellule où on va écrire le char
   while (j < 9)
   { while (i < 7)
@@ -73,11 +74,17 @@ void draw_number(uint8_t x, uint8_t y, uint8_t nb)
 
 
 void outc(uint8_t x, uint8_t y, char c)
-{ if (c > 32)
-  { c -= 95;//33; 
-    draw_object7x9(x, y, font7x9[c] >> 1); }
+{ if (c > 64 && c < 91)
+  { c -= 65; 
+    draw_object7x9(x, y, font7x9[c]); }
   else if (c == 32)
-  { draw_polygon(x, y, space, 0); }}
+  { draw_polygon(x, y, space, 0); }
+  else if (c == 45)
+  { draw_object7x9(x, y, font7x9[52]); }
+  else if (c == 95)
+  { draw_object7x9(x, y, font7x9[53]); }
+  else
+  { draw_object7x9(x, y, lil_square); }}
 
 void putstr_7x9(uint8_t x, uint8_t y, char *str)
 { while (*str)
@@ -112,3 +119,25 @@ void draw_spp(uint8_t flag)
   { draw_polygon(114, 38, stop, 1); }
   else if (flag == RECORD)
   { draw_polygon(114, 38, record, 1); }}
+
+void init_timer(void)
+{ draw_number(0, 34, 0);
+  draw_number(17, 34, 0);
+  draw_polygon(35, 40, dot, 1);
+  draw_polygon(35, 47, dot, 1);
+  draw_number(37, 34, 0);
+  draw_number(54, 34, 0);
+  draw_polygon(72, 40, dot, 1);
+  draw_polygon(72, 47, dot, 1);
+  draw_number(74, 34, 0);
+  draw_number(91, 34, 0); }
+
+void draw_timer(void)
+{
+  draw_number(0, 34, 0);
+  draw_number(17, 34, 5);
+  draw_number(37, 34, 3);
+  draw_number(54, 34, 8);
+  draw_number(74, 34, 5);
+  draw_number(91, 34, 6);
+}

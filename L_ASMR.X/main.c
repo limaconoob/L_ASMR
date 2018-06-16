@@ -81,27 +81,18 @@ int main()
 
   // OLED LCD Init
   ssd1306_initialize();
-  putstr_7x9(0, 2, "l asmr");
+  draw_object7x9(0, 2, limaconoob);
+  putstr_7x9(8, 2, "_ASMR-X");
 
-  draw_object7x9(83, 2, usb_logo >> 1);
+  draw_object7x9(83, 2, usb_logo);
   draw_polygon(97, 4, sd_card, 1);
   update_battery();
   
   draw_spp(PLAY);
   
-  putstr_7x9(0, 17, "abcdefghijklmnop");
-//  putstr_7x9(2, 28, "nopqrstuvwxyz");
-
-  draw_number(0, 34, 7);
-  draw_number(17, 34, 8);
-  draw_polygon(35, 40, dot, 1);
-  draw_polygon(35, 47, dot, 1);
-  draw_number(37, 34, 9);
-  draw_number(54, 34, 0);
-  draw_polygon(72, 40, dot, 1);
-  draw_polygon(72, 47, dot, 1);
-  draw_number(74, 34, 5);
-  draw_number(91, 34, 6);
+//  putstr_7x9(0, 17, "abcdefghijklmnop");
+    putstr_7x9(0, 17, "ABCDEFGHIJKLMNOP");
+    putstr_7x9(0, 27, "QRSTUVWXYZ");
   
   unsigned char k = 0, g = PAUSE;
   while (42)
