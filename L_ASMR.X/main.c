@@ -55,10 +55,10 @@ uint8_t battery_level(void)
 { return (6); }
 
 void update_battery(void)
-{ draw_polygon(110, 3, batterie, 1);
+{ draw_polygon(110, 3, batterie, DISPLAY_POSITIF);
   uint8_t level = 11 - battery_level();
   while (level)
-  { draw_linear(4, 10, 122 - level, 0);
+  { draw_linear(4, 10, 122 - level, DISPLAY_NEGATIF);
     level -= 1; }}
 
 
@@ -81,18 +81,18 @@ int main()
 
   // OLED LCD Init
   ssd1306_initialize();
-  draw_object7x9(0, 2, limaconoob);
-  putstr_7x9(8, 2, "_ASMR-X");
+  draw_object7x9(0, 2, limaconoob, DISPLAY_POSITIF);
+  putstr_7x9(8, 2, "_ASMR-X", DISPLAY_POSITIF);
 
-  draw_object7x9(83, 2, usb_logo);
-  draw_polygon(97, 4, sd_card, 1);
+  draw_object7x9(83, 2, usb_logo, DISPLAY_POSITIF);
+  draw_polygon(97, 4, sd_card, DISPLAY_POSITIF);
   update_battery();
   
   draw_spp(PLAY);
   
 //  putstr_7x9(0, 17, "abcdefghijklmnop");
-    putstr_7x9(0, 17, "ABCDEFGHIJKLMNOP");
-    putstr_7x9(0, 27, "QRSTUVWXYZ");
+    putstr_7x9(0, 17, "ABCDEFGHIJKLMNOP", DISPLAY_POSITIF);
+   // putstr_7x9(0, 27, "QRSTUVWXYZ", NEGATIF);
   
   unsigned char k = 0, g = PAUSE;
   while (42)
